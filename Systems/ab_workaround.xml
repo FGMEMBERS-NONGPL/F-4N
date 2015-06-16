@@ -5,14 +5,9 @@
 <!--  This system copies the engine afterburner state to another
       property so that it can be sent via multiplayer.  -->
 
-  <!-- forward declarations of flightgear properties -->
-  <property>/engines/engine[0]/augmentation</property>
-  <property>/engines/engine[1]/augmentation</property>
-
-
   <channel name="Afterburner-Workaround">
 
-     <switch name="systems/ab_workaround/logic">
+     <switch name="systems/ab_workaround/logic-engine0">
         <default value="0"/>
           <test value="1">
                 /engines/engine[0]/augmentation == 1
@@ -20,7 +15,7 @@
        <output>/sim/multiplay/generic/int[10]</output>
      </switch>
 
-     <switch name="systems/ab_workaround/logic">
+     <switch name="systems/ab_workaround/logic-engine1">
         <default value="0"/>
           <test value="1">
                 /engines/engine[1]/augmentation == 1

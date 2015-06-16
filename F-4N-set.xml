@@ -2,7 +2,7 @@
 
 <!-- License:  Creative Commons, CC-BY-NC-SA   -->
 <!-- Author:   David Culp, Alpha Simulations   -->
-<!-- Email:    davidculp@cox.net               -->
+<!-- Email:    daveculp@cox.net                -->
 
 <PropertyList>
 
@@ -404,6 +404,11 @@
 
 
  <instrumentation>
+  <transponder>
+    <serviceable>true</serviceable>
+    <id-code>1200</id-code>
+    <mode-switch>4</mode-switch>
+  </transponder>
   <marker-beacon>
     <volume type="double" archive="y">0.0</volume>
   </marker-beacon>
@@ -423,6 +428,7 @@
  <nasal>
    <aar>
      <file>Aircraft/DavePack/Nasal/aar_jsbsim.nas</file>
+     <file>Aircraft/DavePack/Nasal/version.nas</file>
    </aar>
  </nasal>
 

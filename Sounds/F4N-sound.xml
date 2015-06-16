@@ -4,7 +4,7 @@
 
  <fx>
 
-  <engine>
+  <engine1>
    <name>engine1</name>
    <mode>looped</mode>
    <path>Aircraft/DavePack/Sounds/milpower.wav</path>
@@ -16,7 +16,7 @@
    </condition>
    <position>
     <x>4.0</x>
-    <y>0.0</y>
+    <y>-1.0</y>
     <z>0.0</z>
    </position>
    <orientation>
@@ -33,9 +33,9 @@
     <min>0.1</min>
     <max>0.5</max>
    </volume>
-  </engine>
+  </engine1>
 
-  <engine>
+  <engine2>
    <name>engine2</name>
    <mode>looped</mode>
    <path>Aircraft/DavePack/Sounds/milpower.wav</path>
@@ -47,7 +47,7 @@
    </condition>
    <position>
     <x>4.0</x>
-    <y>0.0</y>
+    <y>1.0</y>
     <z>0.0</z>
    </position>
    <orientation>
@@ -64,9 +64,9 @@
     <min>0.1</min>
     <max>0.5</max>
    </volume>
-  </engine>
+  </engine2>
 
-  <engine>
+  <engine1cockpit>
    <name>engine1-from-cockpit</name>
    <mode>looped</mode>
    <path>Aircraft/DavePack/Sounds/milpower.wav</path>
@@ -74,15 +74,20 @@
     <property>/engines/engine[0]/running</property>
      <property>/sim/current-view/internal</property>
    </condition>
+   <position>
+    <x>4.0</x>
+    <y>-1.0</y>
+    <z>0.0</z>
+   </position>
    <volume>
     <property>/controls/engines/engine[0]/throttle</property>
     <factor>0.2</factor>
     <min>0.05</min>
     <max>0.2</max>
    </volume>
-  </engine>
+  </engine1cockpit>
 
-  <engine>
+  <engine2cockpit>
    <name>engine2-from-cockpit</name>
    <mode>looped</mode>
    <path>Aircraft/DavePack/Sounds/milpower.wav</path>
@@ -90,15 +95,20 @@
     <property>/engines/engine[1]/running</property>
      <property>/sim/current-view/internal</property>
    </condition>
+   <position>
+    <x>4.0</x>
+    <y>1.0</y>
+    <z>0.0</z>
+   </position>
    <volume>
     <property>/controls/engines/engine[1]/throttle</property>
     <factor>0.2</factor>
     <min>0.05</min>
     <max>0.2</max>
    </volume>
-  </engine>
+  </engine2cockpit>
 
-  <engine>
+  <engine-burner>
    <name>burner</name>
    <mode>looped</mode>
    <path>Aircraft/DavePack/Sounds/afterburner.wav</path>
@@ -125,9 +135,9 @@
     <min>0.4</min>
     <max>0.5</max>
    </volume>
-  </engine>
+  </engine-burner>
 
-  <engine>
+  <engine-burner-cockpit>
    <name>burner-from-cockpit</name>
    <mode>looped</mode>
    <path>Aircraft/DavePack/Sounds/afterburner.wav</path>
@@ -144,10 +154,10 @@
     <min>0.1</min>
     <max>0.1</max>
    </volume>
-  </engine>
+  </engine-burner-cockpit>
 
-  <engine>
-   <name>compressor-whine-external-engine0</name>
+  <engine1-whine>
+   <name>compressor-whine-external-engine1</name>
    <path>Sounds/turbojet_fan.wav</path>
    <mode>looped</mode>
    <condition>
@@ -158,44 +168,10 @@
       <property>/engines/engine[0]/n2</property>
       <value>1</value>
     </greater-than>
-   </condition>
-   <position>     <!-- meters -->
-    <x>-4.0</x>   <!-- +X = aft  -->
-    <y> 1.0</y>   <!-- +Y = left -->
-    <z> 0.0</z>   <!-- +Z = up   -->
-   </position>
-   <orientation>  <!-- normalized vector -->
-    <x>-1.0</x>   <!-- +X = aft  -->
-    <y> 0.0</y>   <!-- +Y = left -->
-    <z> 0.0</z>   <!-- +Z = up   -->
-    <inner-angle>50.0</inner-angle>
-    <outer-angle>180.0</outer-angle>
-    <outer-gain>0.5</outer-gain>
-   </orientation>
-   <pitch>
-    <property>/engines/engine[0]/n2</property>
-    <factor>.001</factor>
-   </pitch>
-   <volume>
-    <property>/engines/engine[0]/n2</property>
-    <factor>0.000167</factor>
-    <min>0.00</min>
-    <max>0.167</max>
-   </volume>
-  </engine>
-
-  <engine>
-   <name>compressor-whine-external-engine1</name>
-   <path>Sounds/turbojet_fan.wav</path>
-   <mode>looped</mode>
-   <condition>
-    <not>
-     <property>/sim/current-view/internal</property>
-    </not>
-    <greater-than>
-      <property>/engines/engine[1]/n2</property>
-      <value>1</value>
-    </greater-than>
+    <less-than>
+      <property>/engines/engine[0]/n2</property>
+      <value>85</value>
+    </less-than>
    </condition>
    <position>     <!-- meters -->
     <x>-4.0</x>   <!-- +X = aft  -->
@@ -206,21 +182,55 @@
     <x>-1.0</x>   <!-- +X = aft  -->
     <y> 0.0</y>   <!-- +Y = left -->
     <z> 0.0</z>   <!-- +Z = up   -->
-    <inner-angle>50.0</inner-angle>
-    <outer-angle>180.0</outer-angle>
-    <outer-gain>0.5</outer-gain>
+    <inner-angle>20.0</inner-angle>
+    <outer-angle>50.0</outer-angle>
+    <outer-gain>0.2</outer-gain>
    </orientation>
-   <pitch>
-    <property>/engines/engine[1]/n2</property>
-    <factor>.001</factor>
-   </pitch>
+   <volume>
+    <property>/engines/engine[0]/n2</property>
+    <factor>0.007</factor>
+    <min>0.4</min>
+    <max>0.7</max>
+   </volume>
+  </engine1-whine>
+
+  <engine2-whine>
+   <name>compressor-whine-external-engine2</name>
+   <path>Sounds/turbojet_fan.wav</path>
+   <mode>looped</mode>
+   <condition>
+    <not>
+     <property>/sim/current-view/internal</property>
+    </not>
+    <greater-than>
+      <property>/engines/engine[1]/n2</property>
+      <value>1</value>
+    </greater-than>
+    <less-than>
+      <property>/engines/engine[0]/n2</property>
+      <value>85</value>
+    </less-than>
+   </condition>
+   <position>     <!-- meters -->
+    <x>-4.0</x>   <!-- +X = aft  -->
+    <y> 1.0</y>   <!-- +Y = left -->
+    <z> 0.0</z>   <!-- +Z = up   -->
+   </position>
+   <orientation>  <!-- normalized vector -->
+    <x>-1.0</x>   <!-- +X = aft  -->
+    <y> 0.0</y>   <!-- +Y = left -->
+    <z> 0.0</z>   <!-- +Z = up   -->
+    <inner-angle>20.0</inner-angle>
+    <outer-angle>50.0</outer-angle>
+    <outer-gain>0.2</outer-gain>
+   </orientation>
    <volume>
     <property>/engines/engine[1]/n2</property>
-    <factor>0.000167</factor>
-    <min>0.00</min>
-    <max>0.167</max>
+    <factor>0.07</factor>
+    <min>0.4</min>
+    <max>0.7</max>
    </volume>
-  </engine>
+  </engine2-whine>
 
   <tire-rumble>
    <name>tire-rumble</name>

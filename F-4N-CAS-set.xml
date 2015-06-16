@@ -3,7 +3,7 @@
 
 <!-- License:  Creative Commons, CC-BY-NC-SA   -->
 <!-- Author:   David Culp, Alpha Simulations   -->
-<!-- Email:    davidculp@cox.net               -->
+<!-- Email:    daveculp@cox.net                -->
 
 <!-- This version of the F-4N incorporates the selectable load-out    -->
 <!-- capability introduced by Nic Quijano.  This version is loaded    -->
@@ -501,6 +501,11 @@
 
 
  <instrumentation>
+  <transponder>
+    <serviceable>true</serviceable>
+    <id-code>1200</id-code>
+    <mode-switch>4</mode-switch>
+  </transponder>
   <marker-beacon>
     <volume type="double" archive="y">0.0</volume>
   </marker-beacon>

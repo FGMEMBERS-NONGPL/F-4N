@@ -465,9 +465,16 @@
 
 <!-- ********************** effects **********************-->
 
-
+ <!-- Old Afterburner Flame - left -->
  <model>
   <path>Aircraft/DavePack/Effects/Afterburner/plume-1-mp.xml</path>
+   <condition>
+       <less-than>
+           <property>sim/version/fgversion</property>
+           <value>350</value>
+       </less-than>    
+       <property>engines/engine[0]/augmentation</property>
+   </condition>
    <offsets>
      <x-m>4.4</x-m>
      <y-m>-0.7</y-m>
@@ -476,8 +483,16 @@
    </offsets>
  </model>
 
+ <!-- Old Afterburner Flame - right -->
  <model>
   <path>Aircraft/DavePack/Effects/Afterburner/plume-2-mp.xml</path>
+   <condition>
+       <less-than>
+           <property>sim/version/fgversion</property>
+           <value>350</value>
+       </less-than>    
+       <property>engines/engine[1]/augmentation</property>
+   </condition>
    <offsets>
      <x-m>4.4</x-m>
      <y-m>0.7</y-m>
@@ -485,7 +500,46 @@
      <pitch-deg>2</pitch-deg>
    </offsets>
  </model>
+  
 
+  <!-- New Afterburner flame - left -->
+  <model>
+   <name>AB_Flame</name>
+   <path>Aircraft/DavePack/Effects/Afterburner/afterburner.xml</path>
+    <condition>
+      <greater-than>
+         <property>sim/version/fgversion</property>
+         <value>349</value>
+      </greater-than>    
+      <property>engines/engine[0]/augmentation</property>
+    </condition>
+    <offsets>
+     <x-m>4.4</x-m>
+     <y-m>-0.7</y-m>
+     <z-m>0.1</z-m>
+     <pitch-deg>4</pitch-deg>
+    </offsets>
+  </model>
+
+  <!-- New Afterburner flame - right -->
+  <model>
+   <name>AB_Flame</name>
+   <path>Aircraft/DavePack/Effects/Afterburner/afterburner.xml</path>
+    <condition>
+      <greater-than>
+         <property>sim/version/fgversion</property>
+         <value>349</value>
+      </greater-than>    
+      <property>engines/engine[1]/augmentation</property>
+    </condition>
+    <offsets>
+     <x-m>4.4</x-m>
+     <y-m>0.7</y-m>
+     <z-m>0.1</z-m>
+     <pitch-deg>4</pitch-deg>
+    </offsets>
+  </model>
+ 
  <model>
   <path>Aircraft/DavePack/Effects/Vortex/condensation-left.xml</path>
    <offsets>
@@ -546,6 +600,17 @@
       <z-m>   0.0 </z-m>
     </offsets>
   </model>
+
+  <!-- Glass shader -->
+  <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>Aircraft/Generic/Effects/glass_shader.png</texture>
+    <object-name>FwdCanopyGlass</object-name>
+    <object-name>RearGlass</object-name>
+    <object-name>MiddleGlass</object-name>
+    <object-name>windscreen-glass</object-name>
+  </animation>
 
 
 <!-- ******************** animations ********************-->
@@ -1245,21 +1310,53 @@
   </axis>
  </animation>
 
+ <!-- Refueling probe and door -->
+<!-- <animation>
+  <type>translate</type>
+  <object-name>probe</object-name>
+  <property>fdm/jsbsim/systems/refuel/probe-pos-norm</property>
+  <factor>0.6</factor>
+  <axis>
+   <x>-1.201</x>
+   <y>0</y>
+   <z>-0.1533</z>
+  </axis>
+ </animation>
+-->
  <animation>
   <type>rotate</type>
   <object-name>probe</object-name>
+  <object-name>RefuelDoor</object-name>
   <property>fdm/jsbsim/systems/refuel/probe-pos-norm</property>
   <factor>30</factor>
-  <center>
-   <x-m>-2.96</x-m>
-   <y-m>0.5114</y-m>
-   <z-m>1.126</z-m>
-  </center>
   <axis>
-   <x>0</x>
-   <y>0.5</y>
-   <z>-0.4</z>
+     <x1-m>-3.499</x1-m>
+     <y1-m>0.552</y1-m>
+     <z1-m>1.356</z1-m>
+     <x2-m>-3.474</x2-m>
+     <y2-m>0.615</y2-m>
+     <z2-m>1.214</z2-m>
   </axis>
+ </animation>
+ <animation>
+  <type>select</type>
+  <object-name>RefuelDoorCover</object-name>
+  <condition>
+    <equals>
+    <property>fdm/jsbsim/systems/refuel/probe-pos-norm</property>
+    <value>0</value>
+   </equals>
+  </condition>
+ </animation>
+ <animation>
+  <type>select</type>
+  <object-name>RefuelDoor</object-name>
+  <condition>
+    <greater-than>
+    <property>fdm/jsbsim/systems/refuel/probe-pos-norm</property>
+    <value>0</value>
+   </greater-than>
+  </condition>
  </animation>
 
  <!-- Suppress Pilot/Seat Model in Cockpit View -->
